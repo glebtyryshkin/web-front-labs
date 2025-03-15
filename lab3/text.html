@@ -7,12 +7,105 @@
     <link rel="stylesheet" href="..\main.css">
     <style>
         .citation {
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            font-size: 24px;
+        }
+
+        .citation1{
             border: 1px solid red;
             padding: 20px;
             border-radius: 10px;
             margin: 20px;
             box-shadow: 10px 10px 5px #0002;
             background: linear-gradient(to left, red, orange, yellow, green, lightblue, blue, purple);
+        }
+
+        .citation2 {
+            background: #ff7675;
+            border: 3px dashed #d63031;
+            box-shadow: 10px 10px 20px rgba(255, 118, 117, 0.5);
+        }
+
+        .citation3 {
+            background: rgb(2,0,36);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(208,40,254,1) 35%, rgba(0,212,255,1) 100%);
+            -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+            -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+            box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+        }
+
+        .citation4 {
+            border: 2px dotted;
+            background: rgb(34,193,195);
+            background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+            -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
+            -moz-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
+            box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
+        }
+
+        .citation5 {
+            border: 4px groove rgba(253,187,45,0.8);
+            background: rgb(63,94,251);
+            background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+            -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;
+            -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;
+            box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2) inset;
+        }
+
+        .citation5 {
+            border: 2px dashed rgba(252,176,69,0.7);
+            background: rgb(131,58,180);
+            background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+            -webkit-box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6);
+            -moz-box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6);
+            box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6);
+        }
+
+        .citation6 {
+            border: 3px dotted #94bbe9;
+            background: rgb(238,174,202);
+            background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+            -webkit-box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+            -moz-box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+            box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+        }
+
+        .citation7 {
+            border: 2px solid #f02dfd;
+            background: rgb(34,193,195);
+            background: linear-gradient(90deg, rgba(34,193,195,1) 0%, rgba(240,45,253,1) 100%);
+            -webkit-box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+            -moz-box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+            box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+        }
+
+        .citation8 {
+            border: 5px ridge rgba(255,238,41,0.6);
+            background: rgb(131,58,180);
+            background: linear-gradient(212deg, rgba(131,58,180,1) 0%, rgba(255,238,41,1) 50%, rgba(252,176,69,1) 100%);
+            -webkit-box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+            -moz-box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+            box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+        }
+
+        .citation9 {
+            border: 2px solid #46fc6d;
+            background: rgb(63,94,251);
+            background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(70,252,109,1) 100%);
+            -webkit-box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6);
+            -moz-box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6);
+            box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6);
+        }
+
+        .citation10 {
+            border: 3px double rgba(255,208,35,0.8);
+            background: rgb(255,208,35);
+            background: linear-gradient(153deg, rgba(255,208,35,1) 0%, rgba(148,187,233,1) 100%);
+            -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+            -moz-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+            box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6) inset;
         }
         .text {
             font-size: 30px;
@@ -34,13 +127,60 @@
     </header>
 
     <main>
-        <div class="citation">
+        <div class="citation citation1">
             <div class="text">
                 Стремитесь не к успеху, а к ценностям, которые он дает.
             </div>
             <div class="author">
                 Альберт Эйнштейн
             </div>
+        </div>
+
+        <div class="citation citation2">
+            <div class="text">
+                Аварийный выход на высоте 30 тысяч футов. Иллюзия безопасности..
+            </div>
+            <div class="author">Бойцовский клуб</div>
+          </div>
+
+        <div class="citation citation3">
+            <div class="text">Мы ходим на работу, которую ненавидим, чтобы купить вещи, которые нам не нужны </div>
+            <div class="author">Бойцовский клуб</div>
+        </div>
+
+        <div class="citation citation4">
+            <div class="text">Мама всегда говорила: «Жизнь как коробка шоколадных конфет. Никогда не знаешь, какая начинка попадется</div>
+            <div class="author">Форрест Гамп</div>
+        </div>
+
+        <div class="citation citation5">
+            <div class="text">Сложно не принять решение, а пережить последствия</div>
+            <div class="author">Законопослушный гражданин</div>
+        </div>
+
+        <div class="citation citation6">
+            <div class="text">Не совершай классическую ошибку всех умников: не думай, что нет людей умнее тебя</div>
+            <div class="author">Области тьмы</div>
+        </div>
+
+        <div class="citation citation7">
+            <div class="text">Знаешь, в чем ужас? Обнаружить, что все, во что ты раньше верил, — полная чушь</div>
+            <div class="author">500 дней лета</div>
+        </div>
+
+        <div class="citation citation8">
+            <div class="text">Жизнь с кучей ошибок гораздо лучше жизни, в которой ничего не сделано</div>
+            <div class="author">Ловушка для невесты</div>
+        </div>
+
+        <div class="citation citation9">
+            <div class="text">Может, звучит глупо, но именно глупости запоминаются лучше всего</div>
+            <div class="author">Вверх</div>
+        </div>
+
+        <div class="citation citation10">
+            <div class="text">Одинокие люди всегда ждут, что кто-то сделает первый шаг</div>
+            <div class="author">Зеленая книга</div>
         </div>
     </main>
 
