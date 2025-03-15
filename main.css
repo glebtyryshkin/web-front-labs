@@ -28,6 +28,31 @@ a {
     color: #d81b60;
 }
 
+a:link {
+    color: #d81b60;
+    text-shadow: 0 0 8px rgba(216,27,96,0.2);
+    box-shadow: 0 2px 8px rgba(216,27,96,0.1);
+}
+
+a:visited {
+    color: #9c27b0;
+    text-shadow: 0 0 8px rgba(156,39,176,0.2);
+    box-shadow: 0 2px 8px rgba(156,39,176,0.1);
+}
+
+a:hover {
+    color:red;
+    text-decoration: underline;
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+    background-color: white;
+}
+
+a:active {
+    color: black;
+    opacity: 0.3;
+}
+
 h1 {
     color: darkgreen;
     margin: 30px;
