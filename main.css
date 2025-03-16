@@ -21,6 +21,13 @@ footer {
     font-style: italic;
     margin: 10px;
     text-align: right;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+main {
+    margin: 10px 20px 70px;
 }
 
 div.menu {
