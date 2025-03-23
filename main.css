@@ -26,6 +26,7 @@ footer {
     right: 0;
     left: 0;
 }
+
 main {
     margin: 10px 20px 70px;
 }
@@ -77,8 +78,9 @@ a:active {
 h1 {
     color: darkgreen;
     margin: 30px;
-    font-size: 35pt;
+    font-size: 25pt;
 }
+
 ol li {
     color: darkblue;
     font-style: italic;
