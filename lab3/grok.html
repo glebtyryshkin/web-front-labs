@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Техно новости</title>
+    <link rel="stylesheet" href="..\main.css">
+    <link rel="shortcut icon" href="..\favicon.ico" type="image/x-icon">
+    <link rel="icon" href="..\favicon-16x16.png">
+    <link rel="icon" href="..\favicon-32x32.png">
+    <style>
+        .title-block {
+            margin: 20px 50px;
+            height: 80px;
+            padding: 0 25px;
+            background: #ffffff;
+            color: #2c3e50;
+            border: 2px solid #bdc3c7;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            overflow: hidden;
+            transition: 
+                margin 0.4s ease,
+                height 0.4s ease 2s,
+                background 0.4s ease,
+                color 0.4s ease,
+                box-shadow 0.4s ease,
+                border-radius 0.4s ease;
+        }
+
+        .title-block:hover {
+            margin: 20px 30px;
+            height: 250px;
+            background: #3498db;
+            color: #ecf0f1;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            transition: 
+                margin 0.4s ease,
+                height 0.4s ease,
+                background 0.4s ease,
+                color 0.4s ease,
+                box-shadow 0.4s ease,
+                border-radius 0.4s ease;
+        }
+
+        .title-header {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .content {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 10px;
+            line-height: 1.5;
+            font-size: 16px;
+        }
+
+        .title-block:hover .content {
+            opacity: 1;
+            transition-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 3
+    </header>
+
+    <main>
+        <div class="title-block">
+            <div class="title-header">Запуск Grok в Telegram</div>
+            <div class="content">
+                <p>
+                    26 марта Илон Маск официально объявил, что чат-бот Grok запустился в «Телеграме». 
+                    Опробовать чат-бот от стартапа xAI могут обладатели платной подписки Telegram Premium.
+                </p>
+                <p>
+                    Grok доступен в телеграм-боте @GrokAI. После запуска бота нужно нажать Start и отправить сообщение для начала беседы. 
+                    Нейросеть работает на Grok 3 - последней версии, выпущенной 18 февраля 2025 года.
+                </p>
+                <p>
+                    Несмотря на отсутствие официальной верификации, бот имеет уникальный юзернейм. 
+                    Павел Дуров 19 марта намекал на интеграцию, а пользователи заметили первые признаки появления Grok ещё до официального анонса.
+                </p>
+                <p>
+                    На текущий момент бот не имеет доступа к интернету, что ограничивает его возможности в работе с актуальной информацией. 
+                    Также наблюдаются временные нестабильности в работе, вероятно связанные с высокой нагрузкой после релиза.
+                </p>
+            </div>
+        </div>
+
+        <div class="title-block">
+            <div class="title-header">Google представила свою самую мощную ИИ-модель Gemini 2.5 Pro</div>
+            <div class="content">
+                <p>Google представила новую языковую модель Gemini 2.5 Pro, которая, по утверждению компании, стала самой продвинутой в её истории.</p>
+                <p>
+                    Модель показала лучшие результаты в анализе данных, программировании и решении сложных задач, 
+                    а также поддерживает обработку контекста объёмом до 1 миллиона токенов с возможностью расширения до 2 миллионов.
+                </p>
+                <p>
+                    Gemini 2.5 Pro входит в семейство моделей Gemini 2.5 и демонстрирует существенный рост по сравнению с предыдущими версиями. 
+                    Одной из главных особенностей стала улучшенная способность к рассуждению: модель способна выстраивать логическую цепочку перед тем, 
+                    как дать окончательный ответ.
+                </p>
+            </div>
+        </div>
+
+        <div class="title-block">
+            <div class="title-header">Китайская автоновинка: Xiaomi YU7</div>
+            <div class="content">
+                <p>
+                    Xiaomi представили YU7 — свой первый кроссовер. Внешне новинка отчасти напоминает своего предшественника SU7, 
+                    а по размерам находится между BMW X5 и Lexus RX.
+                </p>
+                <p>
+                    Пятидверка называется Xiaomi YU7, что, с одной стороны, соответствует фирменной стратегии наименования моделей, 
+                    а с другой — намекает на главного конкурента, которым является популярнейший кроссовер Tesla Model Y. 
+                </p>
+                <p>
+                    Передний электромотор выдает 300 л.с., задний — 391 л.с., то есть совокупная мощность системы — 691 л.с. 
+                    против 673 л.с. у аналогичного седана
+                </p>
+            </div>
+        </div>
+
+        <div class="title-block">
+            <div class="title-header">Российский WeChat: VK создаёт платформу Max</div>
+            <div class="content">
+                <p>Платформа Max объединит в себе мессенджер, мини-приложения и государственные сервисы. Инвестиции в проект могут составить до 1 млрд рублей.</p>
+                <p>
+                    Суперапп Max будет доступен для iOS и Android, а также в десктопном варианте и через веб‑браузеры. 
+                    Разработчики проекта планируют добавить различные государственные (например Госуслуги) и другие сервисы для решения повседневных задач.
+                </p>
+                <p>По информации профильных источников, бета‑версия супераппа Max выйдет весной этого года.</p>
+            </div>
+        </div>
+
+        <div class="title-block">
+            <div class="title-header">Samsung готовит две модели умных очков</div>
+            <div class="content">
+                <p>
+                    Ожидается что-то наподобие Ray-Ban Meta. В оснащении: камера на 12 Мп, два процессора и поддержка Gemini. 
+                    Благодаря этой начинке очки смогут распознавать жесты, QR-коды и лица.
+                </p>
+                <p>На данный момент смарт-очки Samsung находятся на финальной стадии разработки. Кодовое название проекта — «Haean», 
+                    дизайн и функциональность уже готовы почти на 100%. Как и Ray-Ban Meta* Х Coperni, новинка от южнокорейского бренда 
+                    будет представлять собой легкие очки, которые можно использовать на ходу. Это будет их выгодно отличать от громоздкого, 
+                    пусть и более продвинутого варианта от Apple — Vision Pro.
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        &copy; Тырышкин Глеб, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
