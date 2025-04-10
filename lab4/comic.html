@@ -20,31 +20,32 @@
             position: absolute;
             background-color: lightyellow;
             border-radius: 50%;
-            opacity: 0.8;
+            opacity: 0;
             box-shadow: 2px 2px 5px black;
-            opacity: 1;
             transition: opacity 0.5s;
         }
+        
+        .comic-container:hover .cloud {
+            opacity: 1;
+        }
+
         .cloud1 {
             top: 110px;
             left: 800px;
             width: 56px;
             height: 40px;
-            border-radius: 50%;
         }
         .cloud2 {
             top: 70px;
             left: 860px;
             width: 72px;
             height: 56px;
-            border-radius: 50%;
         }
         .cloud3 {
             top: 10px;
             left: 920px;
             width: 88px;
             height: 72px;
-            border-radius: 50%;
         }
         .cloud4 {
             top: -80px;
@@ -53,11 +54,11 @@
             height: 104px;
             text-align: center;
             line-height: 1.5;
-            border-radius: 50%;
         }
         .cloud4 p {
             font-size: 15px;
             font-weight: 600;
+            margin: 15px;
         }
     </style>
 </head>
