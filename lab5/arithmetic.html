@@ -15,11 +15,18 @@
                 let result = a + b;
                 alert("Сумма " + a + " и " + b + " равна: " + result)
             }
+            function showAutor() {
+                let author = "Автор страницы: \nТырышкин Глеб Алексеевич";
+                alert(author);
+            }
+            function showWelcome() {
+                alert("Приветствую вас на моей странице!\n\nДевиз: дурачься + балуйся");
+            }
         </script>
         <style>
             .messege {
                 cursor: pointer;
-                weight: 100px;
+                width: auto;
                 height: 30px;
                 background-color: blanchedalmond;
                 border: 2px dashed red;
@@ -27,19 +34,22 @@
                 display: inline-block;
                 padding: 4px;
             }
+            header, footer {
+                cursor: pointer;
+            }
         </style>
     </head>
     <body>
-        <header>
+        <header onclick="showAutor()">
             НГТУ, ФБ, Лабораторная работа 5
         </header>
 
         <main>
             <div class="messege" onclick="showSum()">Сколько будет 5154+7891?</div>
-            <div class="messege">Узнать, кто автор страницы</div>
+            <div class="messege" onclick="showAutor()">Узнать, кто автор страницы</div>
         </main>
 
-        <footer>
+        <footer ondblclick="showWelcome()">
             &copy; Тырышкин Глеб, ФБИ-31, 2 курс, 2025
         </footer>
     </body>
