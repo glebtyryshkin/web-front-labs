@@ -9,19 +9,36 @@
         <link rel="icon" href="../favicon-16x16.png">
         <link rel="icon" href="../favicon-32x32.png">
         <script>
-            function showSum() {
-                let inputA= document.getElementById('numberA');
-                let inputB= document.getElementById('numberB');
-
+            function calculate(operation) {
+                let inputA = document.getElementById('numberA');
+                let inputB = document.getElementById('numberB');
                 let a = parseInt(inputA.value);
                 let b = parseInt(inputB.value);
-                let result = a + b;
-                alert("Сумма " + a + " и " + b + " равна: " + result)
+                
+                if(operation === '+') return a + b;
+                if(operation === '-') return a - b;
+                if(operation === '*') return a * b;
             }
+
+            function showSum() {
+                let result = calculate('+');
+                alert("Сумма чисел равна: " + result);
+            }
+
+            function showDifference() {
+                let result = calculate('-');
+                alert("Разность чисел равна: " + result);
+            }
+
+            function showProduct() {
+                let result = calculate('*');
+                alert("Произведение чисел равно: " + result);
+            }
+
             function showAutor() {
-                let author = "Автор страницы: \nТырышкин Глеб Алексеевич";
-                alert(author);
+                alert("Автор страницы: \nТырышкин Глеб Алексеевич");
             }
+
             function showWelcome() {
                 alert("Приветствую вас на моей странице!\n\nДевиз: дурачься + балуйся");
             }
@@ -36,6 +53,7 @@
                 border-radius: 15px;
                 display: inline-block;
                 padding: 4px;
+                margin: 2px;
             }
             header, footer {
                 cursor: pointer;
@@ -50,8 +68,11 @@
         <main>
             <label>Первое число: <input type="number" value="5154" id="numberA"></label><br>
             <label>Второе число: <input type="number" value="7891" id="numberB"></label><br>
+            
             <div class="messege" onclick="showSum()">Найти сумму чисел</div>
-            <div class="messege" onclick="showAutor()">Узнать, кто автор страницы</div>
+            <div class="messege" onclick="showDifference()">Найти разность чисел</div>
+            <div class="messege" onclick="showProduct()">Найти произведение</div>
+            <div class="messege" onclick="showAutor()">Узнать автора</div>
         </main>
 
         <footer ondblclick="showWelcome()">
