@@ -9,30 +9,92 @@
         <link rel="icon" href="../favicon-16x16.png">
         <link rel="icon" href="../favicon-32x32.png">
         <script>
-            function calculate(operation) {
+            function validateInputs() {
                 let inputA = document.getElementById('numberA');
                 let inputB = document.getElementById('numberB');
-                let a = parseInt(inputA.value);
-                let b = parseInt(inputB.value);
+                let a = parseFloat(inputA.value);
+                let b = parseFloat(inputB.value);
                 
+                inputA.style.color = '';
+                inputA.style.borderColor = '';
+                inputB.style.color = '';
+                inputB.style.borderColor = '';
+
+                if(isNaN(a)) {
+                    inputA.focus();
+                    inputA.select();
+                    inputA.style.color = 'red';
+                    inputA.style.borderColor = 'red';
+                    alert('Беда с числами, проверьте первое поле')
+                    return false;
+                }
+
+                if(isNaN(b)) {
+                    inputB.focus();
+                    inputB.select();
+                    inputB.style.color = 'red';
+                    inputB.style.borderColor = 'red';
+                    alert('Беда с числами, проверьте второе поле')
+                    return false;
+                }
+
+                return {a, b};
+            }
+
+            function calculate(operation) {
+                const validated = validateInputs();
+                if(!validated) return NaN;
+                
+                const {a, b} = validated;
                 if(operation === '+') return a + b;
                 if(operation === '-') return a - b;
                 if(operation === '*') return a * b;
             }
 
             function showSum() {
-                let result = calculate('+');
-                alert("Сумма чисел равна: " + result);
+                const result = calculate('+');
+                if(!isNaN(result)) alert("Сумма чисел равна: " + result);
             }
 
             function showDifference() {
-                let result = calculate('-');
-                alert("Разность чисел равна: " + result);
+                const result = calculate('-');
+                if(!isNaN(result)) alert("Разность чисел равна: " + result);
             }
 
             function showProduct() {
-                let result = calculate('*');
-                alert("Произведение чисел равно: " + result);
+                const result = calculate('*');
+                if(!isNaN(result)) alert("Произведение чисел равно: " + result);
+            }
+
+            function showDiv() {
+                const validated = validateInputs();
+                if(!validated) return;
+                
+                const {a, b} = validated;
+                if(b === 0) {
+                    alert('На ноль делить нельзя!');
+                    document.getElementById('numberB').focus();
+                    document.getElementById('numberB').style.color = 'red';
+                    document.getElementById('numberB').style.borderColor = 'red';
+                    return;
+                }
+
+                alert(a + " / " + b + " = " + (a / b));
+            }
+
+            function showPower() {
+                const validated = validateInputs();
+                if(!validated) return;
+                
+                const {a, b} = validated;
+                if(a === 0 && b === 0) {
+                    alert('Ноль в нулевой степени не определен!');
+                    document.getElementById('numberA').style.borderColor = 'red';
+                    document.getElementById('numberB').style.borderColor = 'red';
+                    return;
+                }
+
+                alert(a + " ^ " + b + " = " + Math.pow(a, b));
             }
 
             function showAutor() {
@@ -44,7 +106,7 @@
             }
         </script>
         <style>
-            .messege {
+            .message {
                 cursor: pointer;
                 width: auto;
                 height: 30px;
@@ -69,10 +131,12 @@
             <label>Первое число: <input type="number" value="5154" id="numberA"></label><br>
             <label>Второе число: <input type="number" value="7891" id="numberB"></label><br>
             
-            <div class="messege" onclick="showSum()">Найти сумму чисел</div>
-            <div class="messege" onclick="showDifference()">Найти разность чисел</div>
-            <div class="messege" onclick="showProduct()">Найти произведение</div>
-            <div class="messege" onclick="showAutor()">Узнать автора</div>
+            <div class="message" onclick="showSum()">Найти сумму чисел</div>
+            <div class="message" onclick="showDifference()">Найти разность чисел</div>
+            <div class="message" onclick="showProduct()">Найти произведение</div>
+            <div class="message" onclick="showDiv()">Найти отношение чисел</div>
+            <div class="message" onclick="showPower()">Возвести в степень</div>
+            <div class="message" onclick="showAutor()">Узнать автора</div>
         </main>
 
         <footer ondblclick="showWelcome()">
