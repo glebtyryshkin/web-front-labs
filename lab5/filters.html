@@ -15,7 +15,8 @@
                     brightness: document.getElementById('brightnessValue').value + '%',
                     contrast: document.getElementById('contrastValue').value + '%',
                     grayscale: document.getElementById('grayscaleValue').value + '%',
-                    hueRotate: document.getElementById('hueRotateValue').value + 'deg'
+                    hueRotate: document.getElementById('hueRotateValue').value + 'deg',
+                    invert: document.getElementById('invertValue').value + '%'
                 };
 
                 Object.entries(filters).forEach(([key, value]) => {
@@ -27,7 +28,8 @@
                      brightness(${filters.brightness}) 
                      contrast(${filters.contrast}) 
                      grayscale(${filters.grayscale})
-                     hue-rotate(${filters.hueRotate})`;
+                     hue-rotate(${filters.hueRotate})
+                     invert(${filters.invert})`;
             }
             
             window.onload = updateFilter;
@@ -69,6 +71,11 @@
                 Фильтр hue-rotate:
                 <input type="range" min="0" max="360" value="0" onchange="updateFilter()" id="hueRotateValue">
                 <span id="hueRotateOutput"></span>
+            </div>
+            <div class="text">
+                Фильтр invert:
+                <input type="range" min="0" max="100" value="0" onchange="updateFilter()" id="invertValue">
+                <span id="invertOutput"></span>
             </div>
             <div><img src="belka.jpg" id="blurImage" style="width: 70%;"></div>
         </main>
