@@ -10,9 +10,15 @@
         <link rel="icon" href="../favicon-32x32.png">
          <script>
              function blurChange() {
-                 let value = document.getElementById('blurValue').value + 'px';
-                 document.getElementById('blurOutput').innerText = value;
-                 document.getElementById('blurImage').style.filter = 'blur(' + value + ')';
+                 const blur = document.getElementById('blurValue').value + 'px';
+                 const brightness = document.getElementById('brightnessValue').value + '%';
+                 document.getElementById('blurOutput').innerText = blur;
+                 document.getElementById('brightnessOutput').innerText = brightness;
+                 document.getElementById('blurImage').style.filter = `blur(${blur}) brightness(${brightness})`;
+             }
+             
+             function brightnessChange() {
+                 blurChange();
              }
          </script>
          <style>
@@ -32,6 +38,11 @@
                  Фильтр blur:
                  <input type="range" min="0" max="20" value="0" onchange="blurChange()" id="blurValue">
                  <span id="blurOutput"></span>
+             </div>
+             <div class="text">
+                 Фильтр brightness:
+                 <input type="range" min="0" max="500" value="100" onchange="brightnessChange()" id="brightnessValue">
+                 <span id="brightnessOutput"></span>
              </div>
              <div><img src="belka.jpg" id="blurImage" style="width: 70%;"></div>
          </main>
