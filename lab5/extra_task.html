@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тырышкин Глеб. Лабораторная 5</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        #image {
+            width: 50%;
+            height: 50%;
+            border: 2px solid #666;
+            margin: 20px auto;
+        }
+        #info {
+            text-align: center;
+            font-family: Arial;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 5
+    </header>
+
+    <main>
+        <p>Двигайте мышью по картинке. Используйте Ctrl/Alt/Shift</p>
+        <img id="image" src="belka2.jpg">
+        <div id="info"></div>
+    </main>
+
+    <footer>
+        &copy; Тырышкин Глеб, ФБИ-31, 2025
+    </footer>
+
+    <script>
+        const image = document.getElementById('image');
+        const info = document.getElementById('info');
+
+        image.onmousemove = function(e) {
+            let pos = (e.clientX - image.getBoundingClientRect().left) / image.width;
+            let filter = '';
+            let name = '';
+            
+            if(e.ctrlKey) {
+                filter = 'grayscale(' + (pos * 100) + '%)';
+                name = 'Grayscale';
+            } else if(e.altKey) {
+                filter = 'brightness(' + (100 + pos * 200) + '%)';
+                name = 'Brightness';
+            } else if(e.shiftKey) {
+                filter = 'contrast(' + (100 + pos * 200) + '%)';
+                name = 'Contrast';
+            } else {
+
+                filter = 'blur(' + (pos * 10) + 'px)';
+                name = 'Blur';
+            }
+            
+            image.style.filter = filter;
+            info.textContent = name + ': ' + Math.round(pos * 100) + '%';
+        };
+
+        image.onmouseleave = function() {
+            image.style.filter = 'none';
+            info.textContent = '';
+        };
+    </script>
+</body>
+</html>
