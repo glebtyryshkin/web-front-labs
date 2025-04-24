@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тырышкин Глеб Алексеевич. Лабораторная 5</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+        }
+
+        #block {
+            width: 300px;
+            height: 200px;
+            border: 2px solid #8B0000;
+            border-radius: 0;
+            background: #FFFACD;
+            cursor: crosshair;
+            font-family: 'Segoe UI', sans-serif;
+            padding: 20px;
+            font-size: 16px;
+            color: #2F4F4F;
+            text-align: center;
+        }
+        
+
+        #block::after {
+            content: "наведитесь на блок";
+            display: block;
+            color: #696969;
+            margin-top: 40px;
+        }
+    </style>
+    <script>
+        function showCoords() {
+            let x = this.event.x;
+            let y = this.event.y;
+            let div = document.getElementById('block');
+            let ctrlText = '';
+            let altText = '';
+            let shiftText = '';
+
+            div.style.color = '#2F4F4F';
+            div.style.borderColor = '#8B0000';
+            div.style.backgroundColor = '#FFFACD';
+
+            if (this.event.ctrlKey) {
+                div.style.color = '#B22222';
+                div.style.borderColor = '#228B22';
+                div.style.backgroundColor = '#FFE4E1';
+                ctrlText = '<br>Нажата клавиша <b>Ctrl</b>';
+            }
+
+            if (this.event.altKey) {
+                div.style.color = '#4B0082';
+                div.style.borderColor = '#800080';
+                div.style.backgroundColor = '#E6E6FA';
+                altText = '<br>Нажата клавиша <b>Alt</b>';
+            }
+
+            if (this.event.shiftKey) {
+                div.style.color = '#006400';
+                div.style.borderColor = '#2E8B57';
+                div.style.backgroundColor = '#98FB98';
+                shiftText = '<br>Нажата клавиша <b>Shift</b>';
+            }
+
+            div.innerHTML = '<b>x</b> = ' + x + 'px<br><b>y</b> = ' + y + 'px' + ctrlText + altText + shiftText;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 5
+    </header>
+
+    <main>
+        <div id="block" onmousemove="showCoords()"></div>
+    </main>
+
+    <footer>
+        &copy; Тырышкин Глеб, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
