@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тырышкин Глеб Алексеевич. Лабораторная 5</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        main {
+            font-family: 'Comic Sans MS', cursive;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 15px;
+            background: #f0f9ff;
+            border-radius: 20px;
+        }
+
+        h2 {
+            color: #ff69b4;
+            text-shadow: 2px 2px #fff;
+            text-align: center;
+        }
+
+        .item {
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        input {
+            width: 570px;
+            padding: 5px;
+            margin-top: 5px;
+            border: 2px solid #ff69b4;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        button {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin: 10px 5px;
+            cursor: pointer;
+        }
+
+        #total {
+            font-size: 24px;
+            color: #ff1493;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header onclick="showAutor()">
+        НГТУ, ФБ, Лабораторная работа 5
+    </header>
+
+    <main>
+        <h2>🤡 Магазин "Студенческий бред"</h2>
+
+        <div class="item">
+            <div>🎓 Диплом за 3 дня (500р/шт)</div>
+            <input type="number" min="0" id="item1" placeholder="Сколько корочек?" />
+        </div>
+
+        <div class="item">
+            <div>🦉 Энергия для ночных тус (200р/шт)</div>
+            <input type="number" min="0" id="item2" placeholder="Банок Red Bull?" />
+        </div>
+
+        <div class="item">
+            <div>🧦 Волшебные носки (150р/шт)</div>
+            <input type="number" min="0" id="item3" placeholder="Пар носков?" />
+        </div>
+
+        <div class="item">
+            <div>📚 Конспект соседа (300р/шт)</div>
+            <input type="number" min="0" id="item4" placeholder="Страниц списать?" />
+        </div>
+
+        <div class="item">
+            <div>🍕 Пицца «До сессии» (450р/шт)</div>
+            <input type="number" min="0" id="item5" placeholder="Калорий?" />
+        </div>
+
+        <div style="text-align: center;">
+            <button onclick="count()">🧮 Посчитать</button>
+            <button onclick="clean()">💣 Очистить</button>
+        </div>
+
+        <div id="total"></div>
+    </main>
+
+    <script>
+        function count() {
+            var prices = [500, 200, 150, 300, 450];
+            var total = 0;
+
+            for (var i = 1; i <= 5; i++) {
+                var input = document.getElementById('item' + i);
+                if (input.value < 0) input.value = 0;
+                var value = Math.max(0, Number(input.value || 0));
+                total += prices[i - 1] * value;
+            }
+
+            var message = '💸 Итого: ' + total + ' р';
+            if (total > 3000)
+                message += '<br><small>Мама будет в ярости!</small>';
+            else
+                message += '<br><small>Можно брать!</small>';
+
+            document.getElementById('total').innerHTML = message;
+        }
+
+        function clean() {
+            for (var i = 1; i <= 5; i++)
+                document.getElementById('item' + i).value = '';
+            document.getElementById('total').innerHTML = '';
+        }
+    </script>
+
+    <footer ondblclick="showWelcome()">
+        © Тырышкин Глеб, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
