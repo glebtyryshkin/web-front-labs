@@ -16,7 +16,8 @@
                     contrast: document.getElementById('contrastValue').value + '%',
                     grayscale: document.getElementById('grayscaleValue').value + '%',
                     hueRotate: document.getElementById('hueRotateValue').value + 'deg',
-                    invert: document.getElementById('invertValue').value + '%'
+                    invert: document.getElementById('invertValue').value + '%',
+                    saturate: document.getElementById('saturateValue').value + '%'
                 };
 
                 Object.entries(filters).forEach(([key, value]) => {
@@ -29,7 +30,8 @@
                      contrast(${filters.contrast}) 
                      grayscale(${filters.grayscale})
                      hue-rotate(${filters.hueRotate})
-                     invert(${filters.invert})`;
+                     invert(${filters.invert})
+                     saturate(${filters.saturate})`;
             }
             
             window.onload = updateFilter;
@@ -76,6 +78,11 @@
                 Фильтр invert:
                 <input type="range" min="0" max="100" value="0" onchange="updateFilter()" id="invertValue">
                 <span id="invertOutput"></span>
+            </div>
+            <div class="text">
+                Фильтр saturate:
+                <input type="range" min="0" max="500" value="100" onchange="updateFilter()" id="saturateValue">
+                <span id="saturateOutput"></span>
             </div>
             <div><img src="belka.jpg" id="blurImage" style="width: 70%;"></div>
         </main>
