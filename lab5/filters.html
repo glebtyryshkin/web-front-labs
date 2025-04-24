@@ -10,16 +10,22 @@
         <link rel="icon" href="../favicon-32x32.png">
         <script>
             function updateFilter() {
-                const blur = document.getElementById('blurValue').value + 'px';
-                const brightness = document.getElementById('brightnessValue').value + '%';
-                const contrast = document.getElementById('contrastValue').value + '%';
-                
-                document.getElementById('blurOutput').innerText = blur;
-                document.getElementById('brightnessOutput').innerText = brightness;
-                document.getElementById('contrastOutput').innerText = contrast;
-                
+                const filters = {
+                    blur: document.getElementById('blurValue').value + 'px',
+                    brightness: document.getElementById('brightnessValue').value + '%',
+                    contrast: document.getElementById('contrastValue').value + '%',
+                    grayscale: document.getElementById('grayscaleValue').value + '%'
+                };
+
+                Object.entries(filters).forEach(([key, value]) => {
+                    document.getElementById(`${key}Output`).innerText = value;
+                });
+
                 document.getElementById('blurImage').style.filter = 
-                    `blur(${blur}) brightness(${brightness}) contrast(${contrast})`;
+                    `blur(${filters.blur}) 
+                     brightness(${filters.brightness}) 
+                     contrast(${filters.contrast}) 
+                     grayscale(${filters.grayscale})`;
             }
             
             window.onload = updateFilter;
@@ -51,6 +57,11 @@
                 Фильтр contrast:
                 <input type="range" min="0" max="500" value="100" onchange="updateFilter()" id="contrastValue">
                 <span id="contrastOutput"></span>
+            </div>
+            <div class="text">
+                Фильтр grayscale:
+                <input type="range" min="0" max="100" value="0" onchange="updateFilter()" id="grayscaleValue">
+                <span id="grayscaleOutput"></span>
             </div>
             <div><img src="belka.jpg" id="blurImage" style="width: 70%;"></div>
         </main>
