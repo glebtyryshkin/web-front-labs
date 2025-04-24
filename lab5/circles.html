@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тырышкин Глеб Алексеевич. Лабораторная 5</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+
+        
+        main {
+            max-width: 600px;
+            margin: 15px auto;
+            padding: 15px;
+            background: #f0f9ff;
+        }
+        
+        .circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+            text-align: center;
+            line-height: 100px;
+            font-size: 30px;
+            color: white;
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        #restoreBtn {
+            padding: 12px 25px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .hidden {
+            width: 0;
+            height: 0;
+            opacity: 0;
+        }
+
+        #circle1 { top: 15%; left: 10%; background: #e74c3c; }
+        #circle2 { top: 10%; left: 75%; background: #3498db; }
+        #circle3 { top: 55%; left: 35%; background: #2ecc71; }
+        #circle4 { top: 40%; left: 80%; background: #f1c40f; }
+        #circle5 { top: 70%; left: 20%; background: #9b59b6; }
+        #circle6 { top: 30%; left: 50%; background: #1abc9c; }
+        #circle7 { top: 65%; left: 65%; background: #e67e22; }
+        #circle8 { top: 80%; left: 45%; background: #e84393; }
+        #circle9 { top: 35%; left: 15%; background: #7f8c8d; }
+        #circle10 { top: 75%; left: 85%; background: #00b894; }
+    </style>
+</head>
+<body>
+    <header onclick="showAutor()">
+        НГТУ, ФБ, Лабораторная работа 5
+    </header>
+
+    <main>
+        <h2>Хочешь вернуть всё как было? </h2>
+
+        <div class="circle" id="circle1">1</div>
+        <div class="circle" id="circle2">2</div>
+        <div class="circle" id="circle3">3</div>
+        <div class="circle" id="circle4">4</div>
+        <div class="circle" id="circle5">5</div>
+        <div class="circle" id="circle6">6</div>
+        <div class="circle" id="circle7">7</div>
+        <div class="circle" id="circle8">8</div>
+        <div class="circle" id="circle9">9</div>
+        <div class="circle" id="circle10">10</div>
+
+        <button id="restoreBtn">Показать все круги</button>
+    </main>
+
+    <script>
+        const circles = document.querySelectorAll('.circle');
+
+        circles.forEach(circle => {
+            circle.addEventListener('click', () => {
+                circle.classList.toggle('hidden');
+            });
+        });
+
+        document.getElementById('restoreBtn').addEventListener('click', () => {
+            circles.forEach(circle => {
+                circle.classList.remove('hidden');
+            });
+        });
+    </script>
+
+    <footer ondblclick="showWelcome()">
+        © Тырышкин Глеб, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
