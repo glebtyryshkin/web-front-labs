@@ -68,8 +68,10 @@
         </div>
 
         <div style="margin-top: 20px;">
-            <button onclick="startColorChange()" id="start-btn">Старт</button>
-            <button onclick="stopColorChange()" id="stop-btn" disabled>Стоп</button>
+            <button onclick="startColorChange()" id="start-btn">Старт (цвет)</button>
+            <button onclick="stopColorChange()" id="stop-btn" disabled>Стоп (цвет)</button>
+            <button onclick="startTimeUpdate()" id="time-start">Обновлять время</button>
+            <button onclick="stopTimeUpdate()" id="time-stop" disabled>Остановить время</button>
         </div>
     </main>
 
@@ -79,16 +81,13 @@
 
     <script>
         let colorInterval;
+        let timeInterval;
 
-        // Функция для отображения даты
         function showDate() {
             const today = new Date();
-
-            // Основная дата
             document.getElementById('current-date').innerHTML = 
                 `<strong>Текущая дата и время:</strong> ${today.toLocaleString('ru-RU')}`;
-
-            // Локализованные даты
+            
             document.getElementById('date-ru').textContent = today.toLocaleString('ru-RU');
             document.getElementById('date-en').textContent = today.toLocaleString('en-US');
             document.getElementById('date-de').textContent = today.toLocaleString('de-DE');
@@ -96,7 +95,20 @@
             document.getElementById('date-fr').textContent = today.toLocaleString('fr-FR');
         }
 
-        // Смена цвета заголовка
+        function startTimeUpdate() {
+            showDate();
+            timeInterval = setInterval(showDate, 1000);
+            document.getElementById('time-start').disabled = true;
+            document.getElementById('time-stop').disabled = false;
+        }
+
+        function stopTimeUpdate() {
+            clearInterval(timeInterval);
+            document.getElementById('time-start').disabled = false;
+            document.getElementById('time-stop').disabled = true;
+        }
+
+        // Управление цветом
         function changeHeaderColor() {
             const header = document.querySelector('header');
             const r = Math.floor(Math.random() * 256);
@@ -106,7 +118,6 @@
             header.style.transition = 'color 0.5s ease-in-out';
         }
 
-        // Управление таймером
         function startColorChange() {
             changeHeaderColor();
             colorInterval = setInterval(changeHeaderColor, 1000);
