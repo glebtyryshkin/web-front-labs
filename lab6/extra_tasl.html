@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тырышкин Глеб Алексеевич. Лабораторная 6</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        .chart-container {
+            display: flex;
+            height: 300px;
+            gap: 2px;
+            align-items: flex-end;
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        
+        .bar {
+            flex: 1;
+            background: #3498db;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .bar:hover::after {
+            content: attr(data-day);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 2px 5px;
+            background: #333;
+            color: white;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        
+        .highlight {
+            background: #e74c3c !important;
+            box-shadow: 0 0 8px rgba(231, 76, 60, 0.5);
+        }
+        
+        .temp-info {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        
+        input {
+            padding: 8px;
+            width: 100px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+    </header>
+
+    <main>
+        <div id="temperature-chart" class="chart-container"></div>
+        <input type="number" id="day-input" min="1" max="30" placeholder="День (1-30)">
+        <div class="temp-info" id="temp-info"></div>
+    </main>
+
+    <footer>
+        &copy; Тырышкин Глеб, ФБИ-31, 2 курс, 2025
+    </footer>
+
+    <script>
+        // Генерация случайных температур
+        function generateTemperatureData() {
+            return Array.from({length: 30}, (_, i) => ({
+                day: i + 1,
+                min: Math.floor(Math.random() * 20) - 10, // от -10 до +10
+                max: Math.floor(Math.random() * 25) + 5   // от +5 до +30
+            }));
+        }
+
+        // Создание диаграммы
+        function createChart(data) {
+            const chart = document.getElementById('temperature-chart');
+            const maxTemp = Math.max(...data.map(d => d.max));
+            
+            data.forEach(dayData => {
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                bar.style.height = `${(dayData.max/maxTemp)*100}%`;
+                bar.setAttribute('data-day', dayData.day);
+                bar.setAttribute('data-min', dayData.min);
+                bar.setAttribute('data-max', dayData.max);
+                chart.appendChild(bar);
+            });
+        }
+
+        // Обработка ввода дня
+        function handleDayInput() {
+            const day = parseInt(this.value);
+            const bars = document.querySelectorAll('.bar');
+            const info = document.getElementById('temp-info');
+            
+            // Сброс предыдущего выделения
+            bars.forEach(bar => bar.classList.remove('highlight'));
+            
+            if (day >= 1 && day <= 30) {
+                const selectedBar = bars[day - 1];
+                selectedBar.classList.add('highlight');
+                info.innerHTML = `День ${day}: 
+                    <br>Минимум: ${selectedBar.dataset.min}°C
+                    <br>Максимум: ${selectedBar.dataset.max}°C`;
+            } else {
+                info.innerHTML = '';
+            }
+        }
+
+        // Инициализация
+        const temperatureData = generateTemperatureData();
+        createChart(temperatureData);
+        document.getElementById('day-input')
+            .addEventListener('input', handleDayInput);
+    </script>
+</body>
+</html>
