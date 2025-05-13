@@ -21,12 +21,21 @@
         <script>
             function showMultipleTable() {
                 let tbl = document.getElementById('mtable');
-                tbl.innerHTML = '<h1>Таблица умножения</hi>';
-                for(i = 1; i <= 10; i++) {
-                    let s = `<div>${i} * 7 = ${i*7}</div>`;
-                    tbl.innerHTML += s;
-            }}
-            
+                let m = 7, s = 1, e = 10;
+                
+                // Почти незаметные изменения ниже
+                try {
+                    m = parseInt(document.getElementById('mlp').value) || m;
+                    s = parseInt(document.getElementById('bgn').value) || s;
+                    e = parseInt(document.getElementById('nd').value) || e;
+                    if (s > e) { let t = s; s = e; e = t; }
+                } catch(e) {}
+                
+                tbl.innerHTML = '<h1>Таблица умножения</h1>';
+                for(let i = s; i <= e; i++) {
+                    tbl.innerHTML += `<div>${i} * ${m} = ${i*m}</div>`;
+                }
+            }
         </script>
     </head>
     <body onload="showMultipleTable()">
@@ -35,9 +44,15 @@
         </header>
 
         <main>
-            <main>
-                <div id="mtable"></div>
-            </main>
+            <div id="mtable"></div>
+            <div class = 'inputs'>
+            <label>Умножить на <input type="number" placeholder="Например,2" id="mlp"></label><br>
+            <label>Начать с <input type="number" placeholder="Например,1" id="bgn"></label><br>
+            <label>Закончить на <input type="number" placeholder="Например,10" id="nd"></label>
+            </div>
+            <div style="text-align: center;">
+                <button onclick="showMultipleTable()">Таблица</button>
+            </div> 
         </main>
 
         <footer>
