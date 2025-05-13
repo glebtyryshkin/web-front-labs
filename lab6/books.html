@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Тырышкин Глеб Алексеевич. Лабораторная 6</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-32x32.png">
+        <style>
+            .book-item {
+                border: 1px solid #ddd;
+                padding: 15px;
+                margin: 10px 0;
+                border-radius: 5px;
+            }
+            .bestseller {
+                background-color: #ffeeba;
+                border-color: #ffc107;
+            }
+            .out-of-stock {
+                opacity: 0.6;
+                position: relative;
+            }
+            .out-of-stock::after {
+                content: "Нет в наличии";
+                color: #dc3545;
+                position: absolute;
+                right: 15px;
+                top: 15px;
+                font-weight: bold;
+            }
+            .price {
+                color: green;
+                font-weight: bold;
+            }
+        </style>
+        <script src="books.js"></script>
+        <script>
+            function showBooks() {
+                const bookList = document.getElementById('bookList');
+                
+                bookList.innerHTML = books.map(book => `
+                    <div class="book-item 
+                        ${book.bestseller ? 'bestseller' : ''} 
+                        ${book.inStock ? '' : 'out-of-stock'}">
+                        <b>${book.author}</b>,
+                        <i>${book.name}</i>
+                        — ${book.publicationYear}
+                        <div class="price">${book.price}₽</div>
+                    </div>
+                `).join('');
+            }
+        </script>
+    </head>
+    <body onload="showBooks()">
+        <header>
+            НГТУ, ФБ, Лабораторная работа 6
+        </header>
+
+        <main>
+            <h1>Список книг</h1>
+            <div id="bookList"></div>
+        </main>
+
+        <footer>
+            &copy; Тырышкин Глеб, ФБИ-31, 2 курс, 2025
+        </footer>
+    </body>
+</html>
