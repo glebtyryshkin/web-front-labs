@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Тырышкин Глеб Алексеевич. Лабораторная 6</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-32x32.png">
+        <style>
+            #diag { height: 300px; display: flex; align-items: flex-end; }
+            .bar { width: 20px; margin: 0 2px; text-align: center; }
+        </style>
+    </head>
+    <script>
+        function showDiagram() {
+            let data = [36, 86, 55, 28, 92, 60, 41, 17, 9, 43];
+            let colors = ['#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9', 
+            '#92A8D1', '#FFD662', '#955251', '#B565A7', '#009B77', '#EFC050'];
+            
+            let bars = document.getElementsByClassName('bar');
+            const maxData = Math.max(...data);
+            const k = 300 / maxData * 0.9;
+            
+            for(let i = 0; i < data.length; i++) {
+                bars[i].style.height = (data[i] * k) + 'px';
+                bars[i].style.backgroundColor = colors[i];
+                bars[i].innerHTML = data[i];
+            }
+        }
+    </script>
+</head>
+<body onload="showDiagram()">
+    <header>
+        НГТУ, ФБ, Лабораторная работа 6
+    </header>
+
+<main>
+    <div id="diag">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+</main>
+
+    <footer>
+        &copy; Тырышкин Глеб, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
