@@ -39,6 +39,22 @@
             font-size: 12px;
         }
         
+        .bar-label {
+            position: absolute;
+            color: white;
+            font-size: 10px;
+            text-align: center;
+            width: 100%;
+            padding: 2px;
+            text-shadow: 0 0 2px black;
+        }
+        .min-temp {
+            bottom: 0;
+        }
+        .max-temp {
+            top: 0;
+        }
+
         .highlight {
             background: #e74c3c !important;
             box-shadow: 0 0 8px rgba(231, 76, 60, 0.5);
@@ -94,6 +110,18 @@
                 bar.setAttribute('data-day', dayData.day);
                 bar.setAttribute('data-min', dayData.min);
                 bar.setAttribute('data-max', dayData.max);
+                
+                // Добавляем подписи температур
+                const minLabel = document.createElement('div');
+                minLabel.className = 'bar-label min-temp';
+                minLabel.textContent = `${dayData.min}°`;
+                
+                const maxLabel = document.createElement('div');
+                maxLabel.className = 'bar-label max-temp';
+                maxLabel.textContent = `${dayData.max}°`;
+                
+                bar.appendChild(minLabel);
+                bar.appendChild(maxLabel);
                 chart.appendChild(bar);
             });
         }
