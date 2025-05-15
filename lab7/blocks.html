@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Тырышкин Глеб Алексеевич. Лабораторная 7</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <link rel="icon" href="../favicon-16x16.png">
+        <link rel="icon" href="../favicon-32x32.png">
+        <style>
+            .dynamic-block {
+                background-color: #4CAF50;
+                height: 40px;
+                border: 3px solid #2196F3;
+                margin: 15px 0;
+                border-radius: 5px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                transition: all 0.3s ease;
+            }
+
+            .dynamic-block:hover {
+                transform: scale(1.02);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            }
+
+            button {
+                padding: 12px 24px;
+                background: #2196F3;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                margin: 20px 0;
+                font-size: 16px;
+            }
+
+            button:hover {
+                background: #1976D2;
+            }
+        </style>
+    </head>
+    <script>
+        function addNewBlock() {
+            const newBlock = document.createElement('div');
+            newBlock.classList.add('dynamic-block');
+            document.querySelector('main').appendChild(newBlock);
+        }
+    </script>
+    <body>
+        <header>
+            НГТУ, ФБ, Лабораторная работа 7
+        </header>
+
+        <main>
+            <button onclick="addNewBlock()">Добавить блок</button>
+        </main>
+
+        <footer>
+            &copy; Тырышкин Глеб, ФБИ-31, 2 курс, 2025
+        </footer>
+    </body>
+</html>
