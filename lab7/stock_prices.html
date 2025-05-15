@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тырышкин Глеб Алексеевич. Лабораторная 7</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        .positive { color: green; }
+        .negative { color: red; }
+        .stats { margin-top: 20px; }
+        table { border-collapse: collapse; margin: 15px 0; }
+        td, th { border: 1px solid #ddd; padding: 8px; }
+    </style>
+    <script>
+        const dates = [
+            '30.04.2025', '02.05.2025', '05.05.2025', 
+            '06.05.2025', '07.05.2025', '08.05.2025',
+            '12.05.2025', '13.05.2025', '14.05.2025', '15.05.2025'
+        ];
+        
+        const prices = [
+            4106.00, 3905.50, 3860.00,
+            4013.00, 3991.00, 3993.50,
+            4153.50, 4114.50, 4021.00, 4029.00
+        ];
+
+        function showStocks() {
+            const table = document.getElementById('stocks-table');
+            let sum = 0;
+            
+            for(let i = 0; i < dates.length; i++) {
+                const tr = document.createElement('tr');
+                
+                const tdDate = document.createElement('td');
+                tdDate.textContent = dates[i];
+                tr.appendChild(tdDate);
+                
+                const tdPrice = document.createElement('td');
+                tdPrice.textContent = prices[i].toFixed(2);
+                tr.appendChild(tdPrice);
+                
+                const tdDiff = document.createElement('td');
+                if(i > 0) {
+                    const diff = prices[i] - prices[i-1];
+                    tdDiff.textContent = diff.toFixed(2);
+                    
+                    if(diff > 0) tdDiff.className = 'positive';
+                    else if(diff < 0) tdDiff.className = 'negative';
+                } else {
+                    tdDiff.textContent = '-';
+                }
+                tr.appendChild(tdDiff);
+                
+                table.appendChild(tr);
+                sum += prices[i];
+            }
+
+            const average = sum / prices.length;
+            const max = Math.max(...prices);
+            const min = Math.min(...prices);
+            
+            document.getElementById('average').textContent = average.toFixed(2);
+            document.getElementById('max').textContent = max.toFixed(2);
+            document.getElementById('min').textContent = min.toFixed(2);
+            
+            document.querySelector('button').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная работа 7
+    </header>
+
+    <main>
+        <h1>YDEX</h1>
+        <button onclick="showStocks()">Курс акций Яндекс</button>
+        <table border="1" id="stocks-table">
+            <tr>
+                <th>Дата</th>
+                <th>Цена</th>
+                <th>Разница</th>
+            </tr>
+        </table>
+        
+        <div class="stats">
+            Среднее: <span id="average">-</span><br>
+            Максимум: <span id="max">-</span><br>
+            Минимум: <span id="min">-</span>
+        </div>
+    </main>
+
+    <footer>
+        &copy; Тырышкин Глеб, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
