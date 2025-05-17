@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тырышкин Глеб Алексеевич. Лабораторная 7</title>
+    <link rel="stylesheet" href="../main.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../favicon-16x16.png">
+    <link rel="icon" href="../favicon-32x32.png">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        main {
+            width: 100%;
+            padding: 20px;
+        }
+
+        .chart {
+            margin: 20px 0;
+        }
+
+        .bars {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            align-items: flex-end;
+            height: 20vh;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .bar {
+            flex: 1;
+            max-width: 25px;
+            background: #4CAF50;
+            position: relative;
+            margin: 0;
+        }
+
+        .time {
+            position: absolute;
+            bottom: -20px;
+            font-size: 10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-45deg);
+            transform-origin: top center;
+        }
+
+        .value {
+            position: absolute;
+            top: -16px;
+            width: 100%;
+            text-align: center;
+            font-size: 10px;
+            color: #333;
+        }
+
+        .current {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        НГТУ, ФБ, Лабораторная 7
+    </header>
+
+    <main>
+        <div class="current">
+            Сейчас: 
+            <span id="nowTemp">-</span>°C, 
+            Влажность: <span id="nowHumid">-</span>%
+        </div>
+
+        <div class="chart">
+            <h3>Температура (°C)</h3>
+            <div class="bars" id="tempBars"></div>
+        </div>
+
+        <div class="chart">
+            <h3>Влажность (%)</h3>
+            <div class="bars" id="humidBars"></div>
+        </div>
+
+        <script>
+            const URL = 'https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m,relative_humidity_2m&current=temperature_2m,relative_humidity_2m&timezone=Asia%2FBangkok&past_days=1&forecast_days=1';
+
+            function createBar(value, max, time, isTemp) {
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                bar.style.height = (Math.abs(value) / max * 100 + '%');
+                
+                if (isTemp) {
+                    bar.style.background = value > 0 ? '#ff4444' : '#4444ff';
+                }
+
+                const valueLabel = document.createElement('div');
+                valueLabel.className = 'value';
+                valueLabel.textContent = value;
+                bar.appendChild(valueLabel);
+
+                const timeLabel = document.createElement('div');
+                timeLabel.className = 'time';
+                timeLabel.textContent = time.split('T')[1].slice(0,5);
+                bar.appendChild(timeLabel);
+
+                return bar;
+            }
+
+            fetch(URL)
+                .then(function(r) {
+                    return r.json();
+                })
+                .then(function(data) {
+
+                    document.getElementById('nowTemp').textContent = data.current.temperature_2m;
+                    document.getElementById('nowHumid').textContent = data.current.relative_humidity_2m;
+
+                    const hours = data.hourly.time;
+                    const temps = data.hourly.temperature_2m;
+                    const humid = data.hourly.relative_humidity_2m;
+
+                    const maxTemp = Math.max.apply(null, temps.map(Math.abs));
+                    const tempBars = hours.map(function(time, i) {
+                        return createBar(temps[i], maxTemp, time, true);
+                    });
+                    const tempContainer = document.getElementById('tempBars');
+                    tempContainer.append.apply(tempContainer, tempBars);
+
+                    const maxHumid = Math.max.apply(null, humid);
+                    const humidBars = hours.map(function(time, i) {
+                        return createBar(humid[i], maxHumid, time, false);
+                    });
+                    const humidContainer = document.getElementById('humidBars');
+                    humidContainer.append.apply(humidContainer, humidBars);
+                })
+        </script>
+    </main>
+
+    <footer>
+        &copy; Тырышкин Глеб, ФБИ-31, 2 курс, 2025
+    </footer>
+</body>
+</html>
