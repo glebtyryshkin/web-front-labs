@@ -17,7 +17,8 @@
                     grayscale: document.getElementById('grayscaleValue').value + '%',
                     hueRotate: document.getElementById('hueRotateValue').value + 'deg',
                     invert: document.getElementById('invertValue').value + '%',
-                    saturate: document.getElementById('saturateValue').value + '%'
+                    saturate: document.getElementById('saturateValue').value + '%',
+                    sepia: document.getElementById('sepiaValue').value + '%'
                 };
 
                 Object.entries(filters).forEach(([key, value]) => {
@@ -31,7 +32,8 @@
                      grayscale(${filters.grayscale})
                      hue-rotate(${filters.hueRotate})
                      invert(${filters.invert})
-                     saturate(${filters.saturate})`;
+                     saturate(${filters.saturate})
+                     sepia(${filters.sepia})`;
             }
             
             window.onload = updateFilter;
@@ -83,6 +85,11 @@
                 Фильтр saturate:
                 <input type="range" min="0" max="500" value="100" onchange="updateFilter()" id="saturateValue">
                 <span id="saturateOutput"></span>
+            </div>
+            <div class="text">
+                Фильтр sepia:
+                <input type="range" min="0" max="100" value="0" onchange="updateFilter()" id="sepiaValue">
+                <span id="sepiaOutput"></span>
             </div>
             <div><img src="belka.jpg" id="blurImage" style="width: 70%;"></div>
         </main>
