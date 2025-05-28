@@ -14,15 +14,19 @@
     </head>
     <body>
         <header>
-            НГТУ, ФБ, Лабораторная работа 7
+            НГТУ, ФБ, Лабораторная работа 8
         </header>
 
         <main>
             <div id="app">
                 <h1 :title="messageRus">{{ message }}</h1>
                 <p>Счётчик: {{ counter }}</p>
-                <button @click="incCounter" v-if="counter < 10">++</button>
-                <button @click="decCounter" v-if="0 < counter">--</button>
+                <button @click="incCounter" v-if="counter < 10" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i> ++
+                </button>
+                <button @click="decCounter" v-if="0 < counter" class="btn btn-danger">
+                    <i class="bi bi-dash-circle"></i> --
+                </button>
                 <hr>
 
                 <h2>Пользователь:</h2>
@@ -35,8 +39,16 @@
                     <div class="card-body">
                         <h2 class="card-title">Цветы</h2>
                         <ul class="list-group">
-                            <li v-for="(flower, id) in flowers" class="list-group-item">
-                                {{ flower }} <button @click="edit(id, flower)">?</button>
+                            <li v-for="(flower, id) in flowers" class="list-group-item d-flex justify-content-between">
+                                {{ flower }} 
+                                <div>
+                                    <button @click="edit(id, flower)" class="btn btn-sm btn-primary me-1">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                    <button @click="removeFlower(id)" class="btn btn-sm btn-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -45,13 +57,12 @@
                 
                 
 
-                <h2>Цветы</h2>
+                 <h2>Цветы</h2>
                 <table class="table table-danger">
                     <thead>
-
                         <tr>
                             <th>Название</th>
-                            <th>Редактировать</th>
+                            <th>Действия</th>
                         </tr>
                     </thead>
                     <tr v-for="(flower, id) in flowers">
@@ -60,8 +71,11 @@
                             <span v-else>{{ flower }}</span>
                         </td>
                         <td>
-                            <button @click="edit(id, flower)" class="btn btn-primary" v-if="flower !==null">
-                                <i class="bi bi-bootstrap-reboot"></i>
+                            <button @click="edit(id, flower)" class="btn btn-primary me-2" v-if="flower !==null">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button @click="removeFlower(id)" class="btn btn-danger" v-if="flower !==null">
+                                <i class="bi bi-trash"></i>
                             </button>
                             <div class="spinner-border" role="status" v-if="flower === null"></div>
                         </td>
@@ -81,7 +95,9 @@
                         <input type="number" v-model="b" class="form-control">
                     </div>
                     <div class="col-auto">
-                        <button @click="sum" class="btn btn-primary"> = </button>
+                        <button @click="sum" class="btn btn-primary">
+                            <i class="bi bi-calculator"></i> =
+                        </button>
                     </div>
                     <div class="col-auto">
                         <span class="badge text-bg-primary fs-5">{{ result }}</span>
@@ -129,6 +145,15 @@
                     sum() {
                         this.result = this.a + this.b;
                     },
+                    removeFlower(id) {
+                        this.flowers.splice(id, 1);
+                    },
+                    addFlower() {
+                        if (this.newFlower.trim()) {
+                            this.flowers.push(this.newFlower.trim());
+                            this.newFlower = '';
+                        }
+                    }
                 }
             }).mount('#app');
         </script>
