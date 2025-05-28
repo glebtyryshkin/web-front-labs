@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Курс валют — УРАЛСИБ</title>
+  <link rel="shortcut icon" href="images/uralsib-icon-1669939784-logotic-brand.svg" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="images/uralsib.svg" alt="УРАЛСИБ">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">О компании</a></li>
+        <li><a href="news.html">Новости</a></li>
+        <li><a href="currency.html" class="active">Курс валют</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+        <li><a href="video.html">Видео</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+  <section id="converter" class="block">
+    <h2>Калькулятор: рубли ↔ динары</h2>
+    <p id="currentRate">Загрузка курса...</p>
+    <input type="number" id="rubInput" placeholder="Рубли">
+    <button onclick="convertToRSD()">В динары</button>
+    <input type="number" id="rsdInput" placeholder="Динары">
+    <button onclick="convertToRub()">В рубли</button>
+  </section>
+
+  <section id="chart" class="block">
+    <h2>Динамика курса сербского динара</h2>
+    <canvas id="rateChart"></canvas>
+    <p id="barInfo"></p>
+  </section>
+</main>
+
+
+  <script>
+    let rate = 0;
+
+    fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+      .then(res => res.json())
+      .then(data => {
+        const rsd = data.Valute.RSD;
+        rate = rsd.Value / rsd.Nominal; // Курс за 1 динар
+        document.getElementById('currentRate').textContent = `Курс сегодня: 1 RSD = ${rate.toFixed(4)} RUB`;
+      });
+
+    function convertToRSD() {
+      const rub = parseFloat(document.getElementById('rubInput').value);
+      if (!isNaN(rub)) {
+        document.getElementById('rsdInput').value = (rub / rate).toFixed(2);
+      }
+    }
+
+    function convertToRub() {
+      const rsd = parseFloat(document.getElementById('rsdInput').value);
+      if (!isNaN(rsd)) {
+        document.getElementById('rubInput').value = (rsd * rate).toFixed(2);
+      }
+    }
+
+    const chartLabels = ["01.05","06.05","07.05","08.05","13.05","14.05","15.05","16.05","17.05","20.05","21.05","22.05","23.05","24.05","27.05","28.05"];
+    const chartData = [79.0926,79.2578,78.2416,78.2654,77.4957,76.3998,76.5880,76.6846,77.2805,76.7388,77.0134,77.0706,77.0811,76.9471,77.5356,77.2692];
+
+    const ctx = document.getElementById('rateChart').getContext('2d');
+    const rateChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: chartLabels,
+        datasets: [{
+          label: 'Курс RSD (за 100)',
+          data: chartData,
+          backgroundColor: 'steelblue',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        onClick: (e, elements) => {
+          if (elements.length > 0) {
+            const i = elements[0].index;
+            document.getElementById('barInfo').textContent = `Дата: ${chartLabels[i]}, Курс: ${chartData[i]} RUB за 100 RSD`;
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: false
+          }
+        }
+      }
+    });
+  </script>
+</body>
+<a href="#" class="to-top">Наверх ↑</a>
+
+<script src="script.js"></script>
+</html>
