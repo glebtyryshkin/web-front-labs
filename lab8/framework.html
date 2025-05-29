@@ -58,6 +58,22 @@
                 
 
                  <h2>Цветы</h2>
+                 <div class="row g-3 align-items-center mb-3">
+                    <div class="col-auto">
+                        <input 
+                            type="text" 
+                            class="form-control"
+                            placeholder="Введите название цветка"
+                            v-model="newFlower"
+                            @keyup.enter="addFlower"
+                        >
+                    </div>
+                    <div class="col-auto">
+                        <button @click="addFlower" class="btn btn-primary">
+                            <i class="bi bi-plus-circle"></i> Добавить
+                        </button>
+                    </div>
+                </div>
                 <table class="table table-danger">
                     <thead>
                         <tr>
@@ -126,6 +142,7 @@
                         a: 1,
                         b: 10,
                         result: '',
+                        newFlower: '',
                     }
                 },
                 methods: {
